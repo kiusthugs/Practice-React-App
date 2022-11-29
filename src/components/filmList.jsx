@@ -34,6 +34,7 @@ export function FilmListFunction(props) {
 async function getFilms() {
     const filmLink = await fetch('https://ghibliapi.herokuapp.com/films')
     const response = await filmLink.json()
+    console.log(response)
     setList(response)
   }
 

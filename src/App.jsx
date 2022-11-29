@@ -1,5 +1,7 @@
 import React, {useState} from "react"
-import {FilmListFunction} from "./components/filmList.jsx"
+// import {FilmListFunction} from "./components/filmList.jsx"
+import {BrowserRouter, NavLink, Routes, Route} from "react-router-dom"
+import {HomePage, FilmsPage} from "./pages/index.js"
 
 // class App extends React.Component {
 //   constructor(props) {
@@ -43,30 +45,50 @@ import {FilmListFunction} from "./components/filmList.jsx"
 //   }
 // }
 
-function App(props) {
-  const [list, setList] = useState(["ready", "set", "go"])
-  const [text, setText] = useState("")  
+// function App(props) {
+//   const [list, setList] = useState(["ready", "set", "go"])
+//   const [text, setText] = useState("")  
 
-  function onSubmit(e) {
-    e.preventDefault()
-    setList([...list, text])
-  }
+//   function onSubmit(e) {
+//     e.preventDefault()
+//     setList([...list, text])
+//   }
   
-  return (
-    <div>
-      <h1>Hello World</h1>
-      <form onSubmit={onSubmit}>
-        <input value={text} onChange={(e) => setText(e.target.value)}></input>
-        <button type="submit">Add</button>
-      </form>
-      <ul>
-        {list.map((listItem, i) => {
-          return <li key ={listItem + i}>{listItem}</li>
-        })}
-      </ul>
-      <FilmListFunction></FilmListFunction>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h1>Hello World</h1>
+//       <form onSubmit={onSubmit}>
+//         <input value={text} onChange={(e) => setText(e.target.value)}></input>
+//         <button type="submit">Add</button>
+//       </form>
+//       <ul>
+//         {list.map((listItem, i) => {
+//           return <li key ={listItem + i}>{listItem}</li>
+//         })}
+//       </ul>
+//       <FilmListFunction></FilmListFunction>
+//     </div>
+//   );
+// }
 
+
+function App() {
+  return (
+  <BrowserRouter>
+  <nav>
+    <ul>
+      <li>
+        <NavLink to={"/"}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"films"}>Films</NavLink>
+      </li>
+    </ul>
+  </nav>
+  <Routes>
+    <Route path="/" element = {<HomePage></HomePage>}></Route>
+    <Route path="films" element= {<FilmsPage></FilmsPage>}></Route>
+  </Routes>
+  </BrowserRouter>)
+}
 export default App
